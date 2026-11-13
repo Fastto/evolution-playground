@@ -65,6 +65,6 @@ npm run check
 
 ## Licence
 
-Not chosen yet. Until a licence is added, all rights are reserved by the author.
+[MIT](LICENSE).
 
 Fonts (Space Grotesk, Inter, JetBrains Mono) are bundled from Fontsource under the SIL Open Font License.
