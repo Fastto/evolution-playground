@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#001726" />
+    <meta name="description" content="The evolution simulation from the ArtiFish video, running live in your browser. Change the world and watch what evolution builds." />
+    <title>Evolution Playground | ArtiFish</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23002840'/%3E%3Ccircle cx='20' cy='16' r='7' fill='%233FD4E6'/%3E%3Ccircle cx='11' cy='16' r='5' fill='%233FD4E6'/%3E%3Ccircle cx='5.5' cy='16' r='3' fill='%233FD4E6'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <div class="kick">ArtiFish · computed, not drawn</div>
+        <h1>Evolution Playground</h1>
+        <p class="lead">
+          The simulation from the video <a id="video-link" target="_blank" rel="noopener"></a>, running live. A hundred founders, six genes, and nobody tells evolution what to build.
+        </p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage">
+        <div class="world" id="world-box">
+          <canvas id="world" aria-label="The simulated world"></canvas>
+          <div class="zoom">
+            <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+            <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+          </div>
+          <div class="tip">Click a creature to read its genes</div>
+          <div class="banner" id="banner" hidden></div>
+        </div>
+
+        <div class="transport">
+          <button id="play" type="button" class="primary" aria-label="Pause"></button>
+          <div class="seg" id="speeds" role="group" aria-label="Speed"></div>
+          <label class="seed">
+            <span>SEED</span>
+            <input id="seed" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" />
+          </label>
+          <button id="reset" type="button">Reset</button>
+          <button id="random" type="button">New seed</button>
+        </div>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="panel" id="inspector" hidden>
+          <div class="panel-head"><span>CREATURE</span><button id="unselect" type="button" class="link">Clear</button></div>
+          <div id="inspector-body"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><span id="fam-label">FAMILIES</span><span class="hint">colour = mother's family</span></div>
+          <canvas id="families" class="strip"></canvas>
+        </div>
+
+        <div class="charts">
+          <div class="panel">
+            <div class="panel-head">
+              <span>POPULATION</span>
+              <span class="legend"><i style="background: var(--teal-bright)"></i>alive <i style="background: var(--orange-bright)"></i>hunters</span>
+            </div>
+            <canvas id="chart-pop" class="chart"></canvas>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><span>AVERAGE GENES</span><span class="hint">each on its own scale</span></div>
+            <canvas id="chart-genes" class="chart genes"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <div class="panel">
+          <div class="panel-head"><span>WORLD EVENTS</span></div>
+          <label class="check">
+            <input id="timeline" type="checkbox" />
+            <span>Follow the video's timeline<small>jaws start working at step 14,000, a meteor falls at step 44,000</small></span>
+          </label>
+          <div class="row">
+            <button id="jaws" type="button"></button>
+            <button id="meteor" type="button">Drop a meteor</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><span>SETTINGS</span><button id="defaults" type="button" class="link">Back to the video's values</button></div>
+          <div id="sliders"></div>
+        </div>
+
+        <details class="panel">
+          <summary>How to read a creature</summary>
+          <ul class="plain">
+            <li><b>Size</b>: bigger body. Stores more energy, costs more to keep alive.</li>
+            <li><b>Speed</b>: longer tail. Twice as fast burns eight times the energy.</li>
+            <li><b>Sight</b>: bigger eyes. Sees food, mates and danger from farther away.</li>
+            <li><b>Diet</b>: the head turns red as it eats more meat; past 0.5 it grows orange jaws and can hunt.</li>
+            <li><b>Crest</b>: a golden fan, males only. Costs energy, slows him down, and hunters notice it. Females choose by it.</li>
+            <li><b>Taste</b>: invisible, females only. How much a crest matters to her.</li>
+            <li><b>Colour</b>: the mother's family. It never mutates.</li>
+            <li>Tap or click a creature to read its six numbers. Zoom with the + and − buttons (or pinch / Ctrl + scroll), then drag to move around.</li>
+            <li>A body outlined in red is dead. A teal ring is a birth, an orange ring is a kill.</li>
+          </ul>
+        </details>
+
+        <details class="panel">
+          <summary>The eight rules from the video</summary>
+          <ol class="rules" id="rules"></ol>
+        </details>
+      </aside>
+    </main>
+
+    <footer class="foot">
+      <p>
+        Same model and same numbers as the video, but computed live, so every seed tells its own story. The same seed with the same settings replays the same world in the same browser.
+      </p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
