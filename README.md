@@ -5,6 +5,8 @@ The evolution simulation from the ArtiFish video **I Simulated Evolution**, runn
 - Video: https://www.youtube.com/watch?v=qYGI1qK0c1k (channel: https://www.youtube.com/@ArtiFish-RL)
 - Play it online: https://fastto.github.io/evolution-playground/
 
+[![Evolution Playground: the world at generation 40, with population and gene charts](docs/screenshot.png)](https://fastto.github.io/evolution-playground/)
+
 A hundred almost identical founders, each a different colour. Every creature carries six numbers, its genes: size, speed, sight, diet, crest and taste. They eat, look for a mate, and their children get copies of those numbers with tiny mistakes. Nobody tells evolution what to build.
 
 ## What you can do
